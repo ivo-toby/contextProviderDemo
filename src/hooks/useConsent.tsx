@@ -32,9 +32,10 @@ function useConsent() {
 
 function ConsentContextProvider({ children }: ProviderProps) {
     const [loaded, setLoaded] = useState(false);
+    // normally you would not expose setConsent to the provider, but a method to store the cookies (and a export a method to do so)
     const [consent, setConsent] = useState<Omit<ConsentContextType, 'loaded'|'setConsent'>>(CONSENT_DEFAULT);
 
-    const loadGivenConsent = async (): Promise<any> => {
+    // const loadGivenConsent = async (): Promise<any> => {
         // const consents = await getGivenConsent();
         // setConsent({
         //     functionalConsent: consents.technical,
@@ -42,11 +43,11 @@ function ConsentContextProvider({ children }: ProviderProps) {
         //     analyticsConsent: consents.analytics,
         //     socialConsent: consents.social
         // })
-    }
+    // }
 
     useEffect(() => {
         // normally you'd load a consentmanager here (and inject the script somewhere)
-        loadGivenConsent()
+        // loadGivenConsent()
         setLoaded(true);
     }, [])
 
